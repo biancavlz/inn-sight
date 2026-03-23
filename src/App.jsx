@@ -1,5 +1,7 @@
+import GlobalSyles from "./styles/GlobalStyles";
+
 function App() {
-  return <div>hola</div>;
+  return <GlobalSyles />;
 }
 
 export default App;
