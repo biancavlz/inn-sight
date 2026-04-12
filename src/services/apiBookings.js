@@ -1,13 +1,28 @@
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
-export async function getBookings() {
-  const { data, error } = await supabase
-    .from("bookings")
-    .select("*, cabins(*), guests(*)"); // Fetch bookings all data and its relationships with cabins all data and guests all data
-  // .select(
-  //   "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullname, email)", // Fetch bookings specicic attributes and its relationships with cabins and guests but only defined attributes
-  // );
+export async function getBookings({ filter }) {
+  // Solution without serverside filter implementation, fetch all the Bookings list
+  // const { data, error } = await supabase
+  //   .from("bookings")
+  //   .select("*, cabins(*), guests(*)"); // Fetch bookings all data and its relationships with cabins all data and guests all data
+  // // .select(
+  // //   "id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullname, email)", // Fetch bookings specicic attributes and its relationships with cabins and guests but only defined attributes
+  // // );
+
+  // if (error) {
+  //   console.error(error);
+  //   throw new Error("Bookings could not be loaded");
+  // }
+
+  let query = supabase.from("bookings").select("*, cabins(*), guests(*)");
+
+  // Filter
+  if (filter !== null)
+    // if (filter !== null) query = query.eq(filter.field, filter.value);
+    query = query[filter.method || "eq"](filter.field, filter.value);
+
+  const { data, error } = await query;
 
   if (error) {
     console.error(error);
