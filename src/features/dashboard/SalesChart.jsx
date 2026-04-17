@@ -89,9 +89,13 @@ function SalesChart({ bookings, numDays }) {
         text: "#374151",
         background: "#fff",
       };
+
   return (
     <StyledSalesChart>
-      <Heading as="h2">Sales</Heading>
+      <Heading as="h2">
+        Sales from {format(allDates[0], "MMM dd yyyy")} &mdash;{" "}
+        {format(allDates.slice(-1), "MMM dd yyyy")}
+      </Heading>
       <ResponsiveContainer height={300} width="100%">
         <AreaChart data={data}>
           <XAxis
