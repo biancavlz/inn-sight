@@ -5,13 +5,19 @@ import Spinner from "../ui/Spinner";
 import Row from "../ui/Row";
 
 import { useRecentBookings } from "../features/dashboard/useRecentBookings";
+import { useRecentStays } from "../features/dashboard/useRecentStays";
 
 function Dashboard() {
   const { isLoading, bookings } = useRecentBookings();
+  const {
+    isLoading: isloadingStays,
+    stays,
+    consfirmedStays,
+  } = useRecentStays();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isloadingStays) return <Spinner />;
 
-  console.log(bookings);
+  console.log(stays, bookings, consfirmedStays);
 
   return (
     <>
