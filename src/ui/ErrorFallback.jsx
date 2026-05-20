@@ -34,7 +34,6 @@ const Box = styled.div`
 `;
 
 function ErrorFallBack({ error, resetErrorBoundary }) {
-  console.log(error.message);
   return (
     <>
       <GlobalSyles />

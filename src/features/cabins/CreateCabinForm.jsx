@@ -44,7 +44,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
             onCloseModal?.();
           },
         },
-      ); //adds image to the data object
+      );
   }
 
   function onError(errors) {

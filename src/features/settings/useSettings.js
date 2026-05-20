@@ -7,7 +7,7 @@ export function useSettings() {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["settings"], // Name of the table in supabase
+    queryKey: ["settings"],
     queryFn: getSettings,
   });
 
